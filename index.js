@@ -7,7 +7,7 @@ const firmRouter=require('./routes/firmRouter.js')
 const productRouter=require('./routes/productRouter.js')
 const path=require('path')
 
-PORT=5000
+const PORT=process.env.PORT||5000
 
 
 const app=express()
@@ -24,6 +24,11 @@ app.use('/vendor',vendorRoutes)
 app.use('/firms',firmRouter)
 app.use('/products',productRouter)
 app.use('/uploads',express.static('uploads'))
+
+
+app.use('/',(req,res)=>{
+    res.send('<center><h1>Welcome to Quick Bite</h1></center>')
+})
 
 app.listen(PORT,()=>{
     console.log(`Server is running at http://localhost:${PORT}`);
