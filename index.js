@@ -5,13 +5,15 @@ const bodyParser=require('body-parser')
 const vendorRoutes=require('./routes/vendorRoutes.js')
 const firmRouter=require('./routes/firmRouter.js')
 const productRouter=require('./routes/productRouter.js')
-const path=require('path')
+const cors=require('cors')
+
 
 const PORT=process.env.PORT||5000
 
 
 const app=express()
 dotenv.config()
+app.use(cors())
 app.use(bodyParser.json())
 
 
