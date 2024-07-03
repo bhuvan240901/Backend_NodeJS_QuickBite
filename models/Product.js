@@ -21,8 +21,7 @@ const productSchema=new mongoose.Schema({
         type:String
     },
     bestSeller:{
-        type:String,
-        required:true
+        type:Boolean
     },
     description:{
         type:String,

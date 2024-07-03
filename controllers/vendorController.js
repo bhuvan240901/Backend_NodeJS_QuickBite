@@ -40,8 +40,9 @@ const vendorLogin=async (req,res)=>{
        return res.status(401).json("Invalid email or Password")
     }
     const token=jwt.sign({tokenId:vendor._id},secretKey,{expiresIn:"1h"})
-    res.status(200).json({Success:"Login Successfull",token})
-    
+    const vendorId=vendor._id
+    res.status(200).json({Success:"Login Successfull",token,vendorId})
+
     }
     catch(error)
     {
@@ -70,7 +71,12 @@ const getVendorById=async (req,res)=>{
     if(!vendor){
         res.status(400).json({error:"Vendor Not Found"})
     }
-    res.json({vendor})
+    if (!vendor.firm || vendor.firm.length === 0) {
+        return res.status(200).json({ vendorId, vendorFirmId: null });
+    }
+    const vendorFirmId=vendor.firm[0]._id
+    const vendorFirmName=vendor.firm[0].firmName
+    res.status(200).json({vendorId,vendorFirmId,vendorFirmName})
     }
     catch(error)
     {
