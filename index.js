@@ -7,9 +7,8 @@ const firmRouter=require('./routes/firmRouter.js')
 const productRouter=require('./routes/productRouter.js')
 const cors=require('cors')
 
-
-const PORT=process.env.PORT||5000
-
+// const PORT=process.env.PORT||5000
+const PORT=5000
 
 const app=express()
 dotenv.config()
@@ -17,6 +16,7 @@ app.use(cors())
 app.use(bodyParser.json())
 
 mongoose.connect(process.env.mongo_uri)
+// mongoose.connect(dotenv.mongo_uri)
 .then(()=>{console.log("MongoDB Connected Successfully");})
 .catch((error)=>{console.log(error);})
 
