@@ -16,7 +16,6 @@ dotenv.config()
 app.use(cors())
 app.use(bodyParser.json())
 
-
 mongoose.connect(process.env.mongo_uri)
 .then(()=>{console.log("MongoDB Connected Successfully");})
 .catch((error)=>{console.log(error);})
@@ -26,6 +25,7 @@ app.use('/vendor',vendorRoutes)
 app.use('/firms',firmRouter)
 app.use('/products',productRouter)
 app.use('/uploads',express.static('uploads'))
+
 
 
 app.use('/',(req,res)=>{
